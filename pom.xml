@@ -6,6 +6,7 @@
   
   <properties>
   	<hazelcast.version>3.4.6</hazelcast.version>
+  	<junit.version>4.12</junit.version>
   </properties>
   
   <dependencies>
@@ -23,6 +24,16 @@
 	    <artifactId>hazelcast-client</artifactId>
 	    <version>${hazelcast.version}</version>
 	</dependency>
+	
+	
+	<!-- https://mvnrepository.com/artifact/junit/junit -->
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>${junit.version}</version>
+	    <scope>test</scope>
+	</dependency>
+	
   </dependencies>
   
   
