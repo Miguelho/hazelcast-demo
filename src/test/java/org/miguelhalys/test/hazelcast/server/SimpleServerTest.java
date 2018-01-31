@@ -5,7 +5,9 @@ import org.junit.Test;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 
-public class SimpleServerTest {
+import static org.junit.Assert.assertEquals;
+
+public class SimpleServerTest extends HazelcastTestBase{
 
 	
 	@Test
@@ -14,36 +16,24 @@ public class SimpleServerTest {
 		HazelcastInstance hazelcastInstance;
 		__WHEN("A HazelcastInstance is required");
 		hazelcastInstance = Hazelcast.newHazelcastInstance();
-		__THEN("A Hazelcast server is launched with name: ", hazelcastInstance.getName());
+		__THEN("A Hazelcast server is launched with name: " + hazelcastInstance.getName());
 		
 		
 		
 	}
 	
-	private void __GIVEN(String message){
-		System.out.println();
+	@Test
+	public void shouldBootUpTwoInstances(){
+		__GIVEN("A Hazelcast cluster is created by instantiating two HazelcastInstances.");
+		int numNodes = 2;
+		HazelcastInstance hazelcastInstance;
+		HazelcastInstance hazelcastInstance_1;
+		__WHEN("Two HazelcastInstances are instantiated");
+		hazelcastInstance = Hazelcast.newHazelcastInstance();
+		hazelcastInstance_1 = Hazelcast.newHazelcastInstance();
+		__THEN(String.format("A Hazelcast cluster is formed by %s nodes",numNodes));
+		assertEquals(numNodes, hazelcastInstance.getCluster().getMembers().size());
 		
-		System.out.println(" [GIVEN]  ");
-		System.out.println(message);
-		
-		System.out.println();
 	}
-	
-	private void __WHEN(String message, String... args ){
-		System.out.println();
-		
-		System.out.println(" [WHEN]  ");
-		System.out.println(message);
-		
-		System.out.println();
-	}
-	
-	private void __THEN(String message, String... args ){
-		System.out.println();
-		
-		System.out.println(" [THEN]  ");
-		System.out.println(message + args[0]);
-		
-		System.out.println();
-	}
+
 }
