@@ -1,4 +1,4 @@
-#Hazelcast
+# Hazelcast
 
 Este proyecto es una demo para la presentación de la asignatura Sistemas de Almacenamiento del máster en Big Data y Analytics curso 2017/2017 de la U-TAD
 
@@ -19,19 +19,20 @@ Este proyecto es una demo para la presentación de la asignatura Sistemas de Alm
 
 En el test se refleja lo sencillo que es arrancar una instancia de Hazelcast
 
-´´´bash
+``` bash
 mvn -Dtest="org.miguelhalys.test.hazelcast.server.SimpleServerTest#shouldBootUp" test
-´´´
+```
 
 
 ### Ejecutar 
 
-´´´bash
+``` bash
 mvn clean compile exec:java -Dexec.mainClass="com.miguelhalys.hazelcast.server.SimpleServer"
-´´´
+```
 
 Se obtiene una salida como la siguiente:
 
+```
 [INFO] --- exec-maven-plugin:1.5.0:java (default-cli) @ hazelcast-demo ---
 ene 31, 2018 9:08:49 PM com.hazelcast.config.XmlConfigLocator
 INFO: Loading 'hazelcast-default.xml' from classpath.
@@ -61,7 +62,7 @@ Members [1] {
 
 ene 31, 2018 9:08:52 PM com.hazelcast.core.LifecycleService
 INFO: [192.168.52.1]:5701 [dev] [3.4.6] Address[192.168.52.1]:5701 is STARTED
-
+```
 
 ## Arrancar cluster de Hazelcast con dos nodos
 
@@ -69,25 +70,26 @@ INFO: [192.168.52.1]:5701 [dev] [3.4.6] Address[192.168.52.1]:5701 is STARTED
 
 En el test se refleja lo sencillo que es arrancar un cluster de dos nodos de Hazelcast
 
-´´´
+``` bash
 mvn clean -Dtest=org.miguelhalys.test.hazelcast.server.SimpleServerTest#shouldBootUpTwoInstances test
-´´´
+```
 
 ### Ejecutar
 
 Para poder levantar un cluster de dos nodos vamos a empaquetar la aplicación en un jar autoejecutable
 
-´´´bash
+``` bash
 mvn clean package
-´´´
+```
 
 abrir dos consolas y lanzar en cada consola, el siguiente comando desde el directorio target/
 
-´´´bash
+``` bash
 java -jar com.miguelhalys.hazelcast.server.SimpleServer
-´´´
+```
 
 y obtendremos una salida como la siguiente
+```
 
 D:\Proyectos\ProyectosMaster\sistemas-almacenamiento\hazelcast\target>java -jar hazelcast-demo-0.0.1-SNAPSHOT.jar
 ene 31, 2018 10:58:00 PM com.hazelcast.config.XmlConfigLocator
@@ -129,15 +131,15 @@ Members [2] {
         Member [192.168.52.1]:5701 this
         Member [192.168.52.1]:5702
 }
-
+```
 
 ## Escuchar cambios en estructuras de datos distribuidas de un cluster de dos nodos Hazelcast
 
 ### Test
 
-´´´bash
+``` bash
 mvn clean -Dtest=org.miguelhalys.test.hazelcast.events.SimpleListenerTest#listenToChanges test
-´´´
+```
 
 ### Ejecutar
 
