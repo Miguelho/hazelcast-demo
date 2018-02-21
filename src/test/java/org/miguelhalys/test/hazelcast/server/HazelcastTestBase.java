@@ -1,5 +1,11 @@
 package org.miguelhalys.test.hazelcast.server;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.query.impl.getters.ReflectionHelper;
+
 public abstract class HazelcastTestBase {
 	
 	
@@ -28,6 +34,18 @@ public abstract class HazelcastTestBase {
 		System.out.println(message);
 		
 		System.out.println();
+	}
+	
+	@BeforeClass
+	public static void printStart(){
+		System.out.println("***************************");
+		System.out.println("**   TEST IS STARTING    **");
+		System.out.println("***************************");
+	}
+	
+	@AfterClass
+	public static void tearUp(){
+		Hazelcast.shutdownAll();
 	}
 	
 	
